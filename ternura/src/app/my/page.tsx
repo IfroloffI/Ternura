@@ -8,7 +8,6 @@ import FormSection from '@/components/FormSection';
 import Select from '@/components/Select';
 import UserData from '@/components/UserData';
 
-
 const handleSubmit = values => {
   console.log(values);
 };
