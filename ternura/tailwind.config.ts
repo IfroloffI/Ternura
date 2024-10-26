@@ -17,6 +17,7 @@ const config: Config = {
         white: '#EDE7ED',
         gray: '#373737',
         purpleLight: '#FAE2FF',
+        'gray-500': 'rgba(131, 131, 131, 1)',
       },
     },
   },
