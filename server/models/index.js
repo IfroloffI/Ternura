@@ -1,10 +1,10 @@
 "use strict";
 
+const mongoose = require('mongoose');
 const Profiles = require("../models");
 
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/myapp',);
+mongoose.connect('mongodb+srv://DetDOM:DetDOM_BMSTU_1899@ternura.wlbw2.mongodb.net/?retryWrites=true&w=majority&appName=Ternura');
 
-const Profile = mongoose.model('Profiles', Profiles);
+const db_Profiles = mongoose.model('profiles', Profiles);
 
-module.exports = Profile;
+module.exports = db_Profiles;

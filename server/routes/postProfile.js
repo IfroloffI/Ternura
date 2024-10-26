@@ -1,13 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const { Profiles } = require("../models");
+const db_Profiles = require("../models");
 
 router.post("/", async (req, res) => {
-    const profile = req.body;
-    const foo = {
-        "Zalopa": "da"
-    };
-    res.json(foo);
+    const to_insert_profile = req.body;
+    try {
+        const profile = new db_Profiles(to_insert_profile);
+        await profile.save();
+        res.json(profile);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
 module.exports = router;
