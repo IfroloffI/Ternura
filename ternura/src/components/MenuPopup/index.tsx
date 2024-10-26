@@ -7,7 +7,6 @@ import {
   PopoverTrigger,
 } from '@chakra-ui/react';
 
-
 const MenuPopup = forwardRef<HTMLDivElement, Props>(
   (
     {isOpen, onClose, onOpen, children, navBar, onChangeState, actions},

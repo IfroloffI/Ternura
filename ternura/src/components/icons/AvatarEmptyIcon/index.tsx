@@ -1,9 +1,8 @@
 import Image from 'next/image';
-import { FC } from 'react';
+import {FC} from 'react';
 import iconEmpty from '../../../assets/icons/avatar-empty-icon.svg';
 import iconOutlined from '../../../assets/icons/avatar-outlined-icon.svg';
 import Props from './AvatarEmptyIcon.props';
-
 
 const getIconfromVariant = (variant: string) => {
   switch (variant) {
@@ -13,7 +12,6 @@ const getIconfromVariant = (variant: string) => {
       return iconOutlined;
   }
 };
-
 
 const AvatarEmptyIcon: FC<Props> = ({
   width,
