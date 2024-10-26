@@ -8,5 +8,11 @@
     "storybook": "^8.3.6",
     "tailwind": "^4.0.0",
     "yap": "^0.0.2"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   }
 }
