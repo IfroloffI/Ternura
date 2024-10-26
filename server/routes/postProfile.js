@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
     try {
         const profile = new db_Profiles(to_insert_profile);
         await profile.save();
-        res.json(profile);
+        res.status(201).json(profile);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
