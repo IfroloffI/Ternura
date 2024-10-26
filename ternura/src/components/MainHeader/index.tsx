@@ -4,15 +4,15 @@ import LogoIcon from '../icons/Logo';
 import HeaderLayout from '@/layouts/HeaderLayout';
 import {divide} from 'lodash';
 import {usePathname} from 'next/navigation';
-import { navigationTabs } from './MainHeader.usecase';
+import {navigationTabs} from './MainHeader.usecase';
 import Link from 'next/link';
 
 const getTabTileClassNames = ({isActive}: {isActive: boolean}): string => {
   return `
         align-baseline
         py-2
-        !text-black 
-        underline-offset-8 transition-all duration-200 decoration-yellow decoration-2
+        !text-black hover:underline 
+        underline-offset-8 transition-all duration-200 decoration-purpleMain decoration-2
         text-nowrap
         ${isActive ? 'underline' : '!text-gray-500'} 
     `;
