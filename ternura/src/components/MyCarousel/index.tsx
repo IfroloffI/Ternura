@@ -4,6 +4,7 @@ import Image from 'next/image';
 import LeftSliderIcon from '../icons/LeftSliderIcon';
 import RightSliderIcon from '../icons/RightSliderIcon';
 
+
 const MyCarousel: FC<Props> = ({picturesSrc, className, ...props}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
