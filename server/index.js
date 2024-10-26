@@ -7,6 +7,7 @@ app.use(express.json());
 app.use(cors());
 
 const db = require("./models");
+const MongoClient    = require('mongodb').MongoClient;
 
 // Routers
 const postRouter = require("./routes/postProfile");
