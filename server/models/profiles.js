@@ -1,6 +1,6 @@
 const { Schema } = require("mongoose");
 
-const profileSchema = new Schema({
+const Profiles = new Schema({
   ID:          primitive.ObjectID `json:"id" bson:"_id"`,
   UserID:      string             `json:"userID" bson:"userID"`,
   Nickname:    string             `json:"nickname" bson:"nickname"`,
@@ -18,4 +18,4 @@ const profileSchema = new Schema({
   Interests:   [string]           `json:"interests" bson:"interests"`,
 });
 
-module.exports = profileSchema;
+module.exports = Profiles;

@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const { profiles } = require("../models");
+const { Profiles } = require("../models");
 
 router.post("/", async (req, res) => {
     const profile = req.body;
-    await profiles.update(profile);
-    res.json(profile);
+    const foo = {
+        "Zalopa": "da"
+    };
+    res.json(foo);
 });
 
 module.exports = router;

@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { profiles } = require("../models");
+const { Profiles } = require("../models");
 
 router.post("/", async (req, res) => {
     const profile = req.body;
-    await profiles.create(profile);
+    await Profiles.insert(profile);
     res.json(profile);
 });
 
