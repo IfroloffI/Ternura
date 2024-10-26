@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+
 	"github.com/Benzogang-Tape/Ternura/Profile-servce/internal/domain"
 	"github.com/pkg/errors"
 )
@@ -31,7 +32,8 @@ func (p *ProfileHandler) GetAllProfiles(ctx context.Context) ([]*domain.UserProf
 }
 
 func (p *ProfileHandler) GetSuitableProfiles(ctx context.Context, profile domain.UserProfile) ([]*domain.UserProfile, error) {
-	return nil, nil
+	profileList, err := profileAnalysis.sortProfilesForSimilarity(profile, nil)
+	return profileList, err
 }
 
 func (p *ProfileHandler) GetProfileByID(ctx context.Context, id string) (*domain.UserProfile, error) {
