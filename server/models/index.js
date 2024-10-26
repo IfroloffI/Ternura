@@ -1,9 +1,12 @@
 "use strict";
 
+const config = require(__dirname + "/../config/config.json");
+
 const mongoose = require('mongoose');
 const Profiles = require("../models");
 
-mongoose.connect('mongodb+srv://DetDOM:DetDOM_BMSTU_1899@ternura.wlbw2.mongodb.net/?retryWrites=true&w=majority&appName=Ternura');
+console.log(config.MongoDB_href);
+mongoose.connect(config.MongoDB_href);
 
 const db_Profiles = mongoose.model('profiles', Profiles);
 
