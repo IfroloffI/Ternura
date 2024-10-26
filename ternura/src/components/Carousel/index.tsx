@@ -1,7 +1,6 @@
 import {FC, useRef, useState, useCallback, useEffect} from 'react';
 import Carousel from 'react-gallery-carousel';
 import Props from './Carousel.props';
-import 'react-gallery-carousel/dist/index.css';
 import Image, {StaticImageData} from 'next/image';
 import LeftSliderIcon from '../icons/LeftSliderIcon';
 import RightSliderIcon from '../icons/RightSliderIcon';
@@ -15,32 +14,6 @@ const MyCarousel: FC<Props> = ({picturesSrc, className, ...props}) => {
   const image = useRef(null);
   const [classNameCustom, setClassName] = useState('');
   const [curIndex, setCurIndex] = useState(1);
-  const [isFullScreen, setIsFullScreen] = useState(false);
-
-  useEffect(() => {
-    const handleKeyDown = event => {
-      if (isFullScreen && event.key === 'Escape') {
-        setIsFullScreen(false);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isFullScreen]);
-
-  useEffect(() => {
-    const image_obg = image.current;
-
-    if (image_obg) {
-      if (isFullScreen) {
-        setClassName('!w-fit');
-      } else {
-        setClassName('!w-full');
-      }
-    }
-  }, [isFullScreen, curIndex, cur, picturesSrc.length]);
 
   useEffect(() => {
     try {
@@ -67,9 +40,7 @@ const MyCarousel: FC<Props> = ({picturesSrc, className, ...props}) => {
   }, [picturesSrc.length, curIndex, cur]);
 
   return (
-    <div
-      ref={cur}
-      className='w-full min-w-full max-w-full h-full min-h-[270px] hidden md:inline-block'>
+    <div ref={cur} className=' h-full min-h-[270px] block'>
       <Carousel
         className={`px-7 py-6 rounded-2xl !cursor-pointer ${className}`}
         hasMediaButton={false}
@@ -125,24 +96,6 @@ const MyCarousel: FC<Props> = ({picturesSrc, className, ...props}) => {
             <div
               key={index}
               className={`relative h-full w-full rounded-xl overflow-hidden aspect-[9/5] `}>
-              {isFullScreen && (
-                <div
-                  style={{
-                    backgroundImage: `url(${src})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    filter: 'blur(40px)',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    zIndex: 1,
-                  }}
-                />
-              )}
-
               <Image
                 src={src}
                 alt={src}
@@ -154,7 +107,6 @@ const MyCarousel: FC<Props> = ({picturesSrc, className, ...props}) => {
                   maxWidth: '100%',
                   height: '100%',
                   position: 'relative',
-                  zIndex: 2,
                 }}
               />
             </div>
