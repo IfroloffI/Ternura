@@ -7,8 +7,8 @@ import (
 )
 
 func InitConfig() {
-	viper.SetConfigName("config/config.yaml")
-	viper.AddConfigPath(".")
+	viper.SetConfigName("config")
+	viper.AddConfigPath("./config")
 	if err := viper.ReadInConfig(); err != nil {
 		log.Panicf("Fatal error config file: %s", err.Error())
 	}

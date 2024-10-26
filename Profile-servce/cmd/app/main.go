@@ -8,7 +8,6 @@ import (
 	"github.com/Benzogang-Tape/Ternura/Profile-servce/internal/service"
 	"github.com/Benzogang-Tape/Ternura/Profile-servce/internal/transport/rest"
 	"github.com/Benzogang-Tape/Ternura/Profile-servce/pkg/config"
-	"github.com/spf13/viper"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -17,14 +16,6 @@ import (
 	"log"
 	"net/http"
 )
-
-func initConfig() {
-	viper.SetConfigName("config/config.yaml")
-	viper.AddConfigPath(".")
-	if err := viper.ReadInConfig(); err != nil {
-		log.Panicf("Fatal error config file: %s", err.Error())
-	}
-}
 
 func main() {
 	config.InitConfig()
@@ -93,10 +84,9 @@ func main() {
 
 	router := rest.NewAppRouter(profileAPI).InitRouter(logger)
 
-	addr := ":8080"
-	err = http.ListenAndServe(addr, router)
+	err = http.ListenAndServe(cfg.AppPort, router)
 	if err != nil {
-		log.Panicf("RUNTIME ERROR")
+		log.Panicf("RUNTIME ERROR: %s", err.Error())
 	}
 	// log.Fatal(http.ListenAndServe(":8080", nil))
 }
