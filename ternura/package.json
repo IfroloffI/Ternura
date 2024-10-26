@@ -11,7 +11,13 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@chakra-ui/next-js": "^2.4.2",
+    "@chakra-ui/react": "^3.0.1",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@storybook/react": "^8.3.6",
+    "formik": "^2.4.6",
+    "framer-motion": "^11.11.10",
     "next": "15.0.1",
     "react": "19.0.0-rc-69d4b800-20241021",
     "react-dom": "19.0.0-rc-69d4b800-20241021",

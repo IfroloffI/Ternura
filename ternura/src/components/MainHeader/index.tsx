@@ -24,7 +24,7 @@ const MainHeader: FC<Props> = ({activePath}) => {
 
   return (
     <HeaderLayout
-      className='!h-24 hidden text-gray  md:flex justify-between items-center px-20 py-6 w-full'
+      className='!h-24 hidden text-gray  md:flex justify-between items-center py-6 w-full'
       leading={
         <div className='flex gap-2'>
           <LogoIcon className='!w-10 !h-10 aspect-square' height={40} />
