@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { profiles } = require("../models"); // сюда путь до структуры данных MongoDB . js
+const { profiles } = require("../models");
 
-router.post("/byId/:id", async (req, res) => { // параметры через / передаём
+router.post("/", async (req, res) => {
     const profile = req.body;
-    await profiles.create(profile);
+    await profiles.update(profile);
     res.json(profile);
 });
 

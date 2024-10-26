@@ -11,12 +11,10 @@ const MongoClient    = require('mongodb').MongoClient;
 
 // Routers
 const postRouter = require("./routes/postProfile");
-app.use("/posts", postRouter);
+app.use("/postProfile", postRouter);
 const updateRouter = require("./routes/updateProfile");
-app.use("/comments", updateRouter);
+app.use("/updateProfile", updateRouter);
 
-db.sequelize.sync().then(() => {
-  app.listen(port, () => {
-    console.log("Server is running on port " + port);
-  });
+app.listen(port, () => {
+  console.log("Server is running on port " + port);
 });
