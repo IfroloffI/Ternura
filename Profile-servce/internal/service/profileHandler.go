@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/Benzogang-Tape/Ternura/Profile-servce/internal/domain"
+	"github.com/Benzogang-Tape/Ternura/Profile-servce/internal/profileAnalysis"
 	"github.com/pkg/errors"
 )
 
@@ -31,8 +32,9 @@ func (p *ProfileHandler) GetAllProfiles(ctx context.Context) ([]*domain.UserProf
 	return profileList, nil
 }
 
-func (p *ProfileHandler) GetSuitableProfiles(ctx context.Context, profile domain.UserProfile) ([]*domain.UserProfile, error) {
-	profileList, err := profileAnalysis.sortProfilesForSimilarity(profile, nil)
+func (p *ProfileHandler) GetSuitableProfiles(ctx context.Context, profile domain.UserProfile) ([]domain.UserProfile, error) {
+	// TODO: исправить все лишние копирования данных, свести всё к ссылкам
+	profileList, err := profileAnalysis.SortProfilesForSimilarity(profile, nil)
 	return profileList, err
 }
 

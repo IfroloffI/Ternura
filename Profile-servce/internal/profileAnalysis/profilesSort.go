@@ -11,7 +11,7 @@ type SimilarityScore struct {
 	Score   float64
 }
 
-func sortProfilesForSimilarity(targetProfile domain.UserProfile, profiles []domain.UserProfile) ([]domain.UserProfile, error) {
+func SortProfilesForSimilarity(targetProfile domain.UserProfile, profiles []domain.UserProfile) ([]domain.UserProfile, error) {
 	var similarityScores []SimilarityScore
 
 	for _, profile := range profiles {
