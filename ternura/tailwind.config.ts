@@ -16,6 +16,7 @@ const config: Config = {
         purpleFusia: '#FF00D0',
         white: '#EDE7ED',
         gray: '#373737',
+        'grey-light-stroke': '#EBEBEB',
         purpleLight: '#FAE2FF',
         'gray-500': 'rgba(131, 131, 131, 1)',
       },

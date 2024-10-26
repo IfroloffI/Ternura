@@ -5,7 +5,7 @@ import {CardDefault} from '@/components/Card/Card.usecase';
 
 export default function SearchPage() {
   return (
-    <div className='w-full h-full '>
+    <div className='w-full h-full flex flex-col gap-10 '>
       <MainHeader />
       <Card {...CardDefault} />
     </div>

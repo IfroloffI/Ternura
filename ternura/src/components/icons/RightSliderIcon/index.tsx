@@ -3,10 +3,9 @@ import icon from '@/assets/icons/plus-polygon-icon.svg';
 import { FC } from 'react';
 import Props from './RightSliderIcon.props';
 
-function RightSliderIcon(isSmallGap: boolean = false) {
+const RightSliderIcon = () => {
   return (
     <svg
-      className={`${isSmallGap ? 'me-3' : 'me-4'}`}
       width="24"
       height="24"
       viewBox="0 0 36 36"

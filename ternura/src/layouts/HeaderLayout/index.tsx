@@ -12,7 +12,7 @@ const HeaderLayout: FC<Props> = ({
     <div
       className={`
              w-full h-fit  items-center gap-1 justify-between
-             border-b border-grey-light-stroke relative ${className}
+             border-b border-gray relative ${className}
              `}
       {...props}>
       <div className='w-fit'>{leading}</div>
