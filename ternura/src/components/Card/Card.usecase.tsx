@@ -1,4 +1,4 @@
-import { picturesSrc } from '../Carousel/Carousel.usecase';
+import {picturesSrc} from '../MyCarousel/MyCarousel.usecase';
 
 export const CardDefault = {
   photos: picturesSrc,

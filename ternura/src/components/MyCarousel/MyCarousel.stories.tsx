@@ -1,7 +1,7 @@
 import {Meta, StoryObj} from '@storybook/react';
-import Props from './Carousel.props';
+import Props from './MyCarousel.props';
 import MyCarousel from '.';
-import { picturesSrc } from './Carousel.usecase';
+import {picturesSrc} from './MyCarousel.usecase';
 
 const ActionsData = {};
 
