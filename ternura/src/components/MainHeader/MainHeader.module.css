@@ -1,0 +1,12 @@
+.basic {
+  background-image: linear-gradient(#c17ede 0 0);
+  background-position: center bottom 12%;
+  background-size: var(--d, 0) 2px;
+  background-repeat: no-repeat;
+  /* background-position: 0 calc(100% + 8px); Сдвиг фона вниз на 8 пикселей */
+  transition: 0.5s;
+  background-repeat: no-repeat;
+}
+.basic:hover {
+  --d: 100%;
+}

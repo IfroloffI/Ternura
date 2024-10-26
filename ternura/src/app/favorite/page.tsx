@@ -5,7 +5,7 @@ export default function FavoritePage() {
 
   return (
     <div className='w-full h-full'>
-      <MainHeader />
+      
     </div>
   );
 }

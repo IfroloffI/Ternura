@@ -1,17 +1,23 @@
-import type {FC} from 'react';
+'use client';
+import {useRef, type FC} from 'react';
 import Props from '@/components/MainHeader/MainHeader.props';
 import LogoIcon from '../icons/Logo';
 import HeaderLayout from '@/layouts/HeaderLayout';
-import {divide} from 'lodash';
 import {usePathname} from 'next/navigation';
 import {navigationTabs} from './MainHeader.usecase';
 import Link from 'next/link';
+import styles from './MainHeader.module.css';
+import AvatarEmptyIcon from '../icons/AvatarEmptyIcon';
+import MenuTile from '../MenuPopup/components/MenuTile';
+import MenuPopup from '../MenuPopup';
+import {useOutsideClick, useDisclosure} from '@chakra-ui/hooks';
+import NavIcon from '../icons/NavIcon';
 
 const getTabTileClassNames = ({isActive}: {isActive: boolean}): string => {
   return `
         align-baseline
         py-2
-        !text-black hover:underline 
+        !text-black
         underline-offset-8 transition-all duration-200 decoration-purpleMain decoration-2
         text-nowrap
         ${isActive ? 'underline' : '!text-gray-500'} 
@@ -20,11 +26,20 @@ const getTabTileClassNames = ({isActive}: {isActive: boolean}): string => {
 
 const MainHeader: FC<Props> = ({activePath}) => {
   const activeNextPathName = usePathname();
-  activePath = activePath === undefined ? activeNextPathName : activePath;
+  const currentActivePath = activePath ?? activeNextPathName; // Используем оператор нулевого слияния
+  const ref = useRef(null);
+  const {onOpen, isOpen, onClose} = useDisclosure();
+
+  useOutsideClick({
+    ref,
+    handler: () => {
+      if (isOpen) onClose();
+    },
+  });
 
   return (
     <HeaderLayout
-      className='!h-24 hidden text-gray  md:flex justify-between items-center py-6 w-full'
+      className='!h-24 hidden text-gray md:flex justify-between items-center py-6 w-full'
       leading={
         <div className='flex gap-2'>
           <LogoIcon className='!w-10 !h-10 aspect-square' height={40} />
@@ -38,19 +53,60 @@ const MainHeader: FC<Props> = ({activePath}) => {
           {navigationTabs.map(({path, title}) => (
             <li
               key={path}
-              className={` ${getTabTileClassNames({
-                isActive: path === activePath,
+              className={`${styles.basic} ${getTabTileClassNames({
+                isActive: path === currentActivePath,
               })}`}>
               <Link
                 href={path as string}
-                className='md:text-xs  xl:text-base lg:text-sm sm:text-xs text-xs font-semibold'>
+                className='md:text-xs xl:text-base lg:text-sm sm:text-xs text-xs font-semibold'>
                 {title}
               </Link>
             </li>
           ))}
         </ul>
       }
-      trailing={<div>end</div>}
+      trailing={
+        <MenuPopup
+          ref={ref}
+          isOpen={isOpen}
+          onOpen={onOpen}
+          onClose={onClose}
+          navBar={
+            <>
+              <MenuTile
+                path='/ads/my'
+                onClick={onClose}
+                icon={<NavIcon variant='list' />}>
+                Мои аукционы
+              </MenuTile>
+              <MenuTile
+                path='/profile/docs'
+                onClick={onClose}
+                icon={<NavIcon variant='docs' />}>
+                Мои документы
+              </MenuTile>
+              <MenuTile
+                onClick={onClose}
+                icon={<></>}>
+                Оплатить услуги
+              </MenuTile>
+              <MenuTile
+                onClick={() => {}}
+                icon={
+                  <NavIcon
+                    style={{marginLeft: '1px', marginRight: '-1px'}}
+                    variant='exit'
+                  />
+                }>
+                Выйти
+              </MenuTile>
+            </>
+          }>
+          <div>
+            <AvatarEmptyIcon width={32} height={32} />
+          </div>
+        </MenuPopup>
+      }
     />
   );
 };

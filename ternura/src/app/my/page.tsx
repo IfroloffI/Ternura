@@ -12,7 +12,7 @@ const initialValues = {
 export default function MyPage() {
   return (
     <div className='w-full h-full'>
-      <MainHeader />
+      
       {/* <Formik
         initialValues={initialValues}
         enableReinitialize
