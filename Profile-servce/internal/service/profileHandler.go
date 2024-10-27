@@ -31,11 +31,24 @@ func (p *ProfileHandler) GetAllProfiles(ctx context.Context) ([]*domain.UserProf
 	return profileList, nil
 }
 
-func (p *ProfileHandler) GetSuitableProfiles(ctx context.Context, profile domain.UserProfile) ([]*domain.UserProfile, error) {
-	//// TODO: исправить все лишние копирования данных, свести всё к ссылкам
-	//profileList, err := profileAnalysis.SortProfilesForSimilarity(profile, nil)
-	//return profileList, err
-	return nil, nil
+func (p *ProfileHandler) GetSuitableProfiles(ctx context.Context, profileID string) ([]*domain.UserProfile, error) {
+	userProfile, err := p.GetProfileByID(ctx, profileID)
+	if err != nil {
+		return nil, errors.Wrap(err, "GetProfileByID: ")
+	}
+	userGender := userProfile.Gender
+	suitableProfiles, err := p.GetProfilesByGender(ctx, userGender)
+	if err != nil {
+		return nil, errors.Wrap(err, "GetSuitableProfiles: ")
+	}
+	recs := RecommendProfiles(*userProfile, suitableProfiles)
+
+	sortedProfiles := make([]*domain.UserProfile, len(recs))
+	for _, item := range recs {
+		sortedProfiles = append(sortedProfiles, &item.Profile)
+	}
+
+	return sortedProfiles, nil
 }
 
 func (p *ProfileHandler) GetProfileByID(ctx context.Context, id string) (*domain.UserProfile, error) {

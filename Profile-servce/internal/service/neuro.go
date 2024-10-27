@@ -1,4 +1,4 @@
-package profileAnalysis
+package service
 
 import (
 	"math"
@@ -63,8 +63,8 @@ func CalculateSimilarity(userA, userB domain.UserProfile) float64 {
 	const weightWeight = 0.1
 	const stepsWeight = 0.1
 
-	ageA := 2024 - ConvertBirthToAge(userA.Birth)
-	ageB := 2024 - ConvertBirthToAge(userB.Birth)
+	ageA := ConvertBirthToAge(userA.Birth)
+	ageB := ConvertBirthToAge(userB.Birth)
 	if ageA == ageB {
 		score += ageWeight
 	}

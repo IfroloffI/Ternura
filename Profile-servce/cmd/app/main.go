@@ -3,13 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/Benzogang-Tape/Ternura/Profile-servce/internal/domain"
 	"github.com/Benzogang-Tape/Ternura/Profile-servce/internal/repo"
 	"github.com/Benzogang-Tape/Ternura/Profile-servce/internal/service"
 	"github.com/Benzogang-Tape/Ternura/Profile-servce/internal/transport/rest"
+	"github.com/Benzogang-Tape/Ternura/Profile-servce/internal/usergen"
 	"github.com/Benzogang-Tape/Ternura/Profile-servce/pkg/config"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.uber.org/zap"
@@ -34,42 +32,66 @@ func main() {
 	}
 	collection := sess.Database("ternura").Collection("profiles")
 
-	if n, _ := collection.CountDocuments(ctx, bson.D{}); n == 0 {
-		collection.InsertOne(ctx, &domain.UserProfile{
-			ID:          primitive.NewObjectID(),
-			UserID:      "1",
-			Nickname:    "TEST",
-			Name:        "TEST",
-			Surname:     "TEST",
-			Phone:       "TEST",
-			Email:       "TEST",
-			Birth:       "TEST",
-			Gender:      "TEST",
-			Height:      0,
-			Weight:      0,
-			StepsAmount: 0,
-			PhotoURLs:   nil,
-			Qualities:   nil,
-			Interests:   nil,
-		})
-		collection.InsertOne(ctx, &domain.UserProfile{
-			ID:          primitive.NewObjectID(),
-			UserID:      "2",
-			Nickname:    "TEST",
-			Name:        "TEST",
-			Surname:     "TEST",
-			Phone:       "TEST",
-			Email:       "TEST",
-			Birth:       "TEST",
-			Gender:      "TEST",
-			Height:      0,
-			Weight:      0,
-			StepsAmount: 0,
-			PhotoURLs:   nil,
-			Qualities:   nil,
-			Interests:   nil,
-		})
+	randomProfiles := usergen.GenerateRandomProfiles(20)
+	for _, profile := range randomProfiles {
+		_, err := collection.InsertOne(ctx, &profile)
+		if err != nil {
+			log.Println("Failed to add profile")
+		}
 	}
+	//if n, _ := collection.CountDocuments(ctx, bson.D{}); n < 10 {
+	//	collection.InsertOne(ctx, &domain.UserProfile{
+	//		ID:          primitive.NewObjectID(),
+	//		UserID:      "1",
+	//		Nickname:    "TEST",
+	//		Name:        "TEST",
+	//		Surname:     "TEST",
+	//		Phone:       "TEST",
+	//		Email:       "TEST",
+	//		Birth:       "TEST",
+	//		Gender:      "TEST",
+	//		Height:      0,
+	//		Weight:      0,
+	//		StepsAmount: 0,
+	//		PhotoURLs:   []string{"https://i.pinimg.com/736x/fc/3f/df/fc3fdf111e8c5c3d2f696627845b43b3.jpg"},
+	//		Qualities:   nil,
+	//		Interests:   nil,
+	//	})
+	//	collection.InsertOne(ctx, &domain.UserProfile{
+	//		ID:          primitive.NewObjectID(),
+	//		UserID:      "2",
+	//		Nickname:    "TEST",
+	//		Name:        "TEST",
+	//		Surname:     "TEST",
+	//		Phone:       "TEST",
+	//		Email:       "TEST",
+	//		Birth:       "TEST",
+	//		Gender:      "TEST",
+	//		Height:      0,
+	//		Weight:      0,
+	//		StepsAmount: 0,
+	//		PhotoURLs:   []string{"https://i.pinimg.com/736x/fc/3f/df/fc3fdf111e8c5c3d2f696627845b43b3.jpg", "https://avatars.mds.yandex.net/i?id=8f9aaeff949c29d3570f4575d304f8ec1c059fde-4885535-images-thumbs&n=13"},
+	//		Qualities:   nil,
+	//		Interests:   nil,
+	//	})
+	//	collection.InsertOne(ctx, &domain.UserProfile{
+	//		ID:          primitive.NewObjectID(),
+	//		UserID:      "2",
+	//		Nickname:    "TEST",
+	//		Name:        "TEST",
+	//		Surname:     "TEST",
+	//		Phone:       "TEST",
+	//		Email:       "TEST",
+	//		Birth:       "TEST",
+	//		Gender:      "TEST",
+	//		Height:      0,
+	//		Weight:      0,
+	//		StepsAmount: 0,
+	//		PhotoURLs:   []string{"https://i.pinimg.com/736x/fc/3f/df/fc3fdf111e8c5c3d2f696627845b43b3.jpg", "https://avatars.mds.yandex.net/i?id=8f9aaeff949c29d3570f4575d304f8ec1c059fde-4885535-images-thumbs&n=13"},
+	//		Qualities:   nil,
+	//		Interests:   nil,
+	//	})
+	//}
 
 	zapLogger, err := zap.NewProduction()
 	if err != nil {
