@@ -12,6 +12,8 @@ app.use(cors());
 // Routers
 const likeRouter = require("./routes/likeEvent");
 app.use("/likeEvent", likeRouter);
+const authRouter = require("./routes/authEvent");
+app.use("/auth", authRouter);
 const postRouter = require("./routes/postProfile");
 app.use("/postProfile", postRouter);
 const updateRouter = require("./routes/updateProfile");
