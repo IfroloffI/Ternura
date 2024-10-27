@@ -65,48 +65,7 @@ const MainHeader: FC<Props> = ({activePath}) => {
           ))}
         </ul>
       }
-      trailing={
-        <MenuPopup
-          ref={ref}
-          isOpen={isOpen}
-          onOpen={onOpen}
-          onClose={onClose}
-          navBar={
-            <>
-              <MenuTile
-                path='/ads/my'
-                onClick={onClose}
-                icon={<NavIcon variant='list' />}>
-                Мои аукционы
-              </MenuTile>
-              <MenuTile
-                path='/profile/docs'
-                onClick={onClose}
-                icon={<NavIcon variant='docs' />}>
-                Мои документы
-              </MenuTile>
-              <MenuTile
-                onClick={onClose}
-                icon={<></>}>
-                Оплатить услуги
-              </MenuTile>
-              <MenuTile
-                onClick={() => {}}
-                icon={
-                  <NavIcon
-                    style={{marginLeft: '1px', marginRight: '-1px'}}
-                    variant='exit'
-                  />
-                }>
-                Выйти
-              </MenuTile>
-            </>
-          }>
-          <div>
-            <AvatarEmptyIcon width={32} height={32} />
-          </div>
-        </MenuPopup>
-      }
+      trailing={<AvatarEmptyIcon width={32} height={32} />}
     />
   );
 };

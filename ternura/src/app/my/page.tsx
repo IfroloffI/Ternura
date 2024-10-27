@@ -1,19 +1,21 @@
 'use client';
 import {MainHeader} from '@/components/MainHeader';
-import { Formik } from 'formik';
+import { Button, Input} from '@chakra-ui/react';
+import {Formik} from 'formik';
+import InputWrapper from '@/components/InputWrapper';
 
 const initialValues = {
   phone: '',
   first_name: '',
   last_name: '',
-  
 };
 
 export default function MyPage() {
   return (
-    <div className='w-full h-full'>
-      
-      {/* <Formik
+    
+      <div className='w-full h-full'>
+        {/* <Input type='tel' placeholder='Введите телефон' /> */}
+        <Formik
         initialValues={initialValues}
         enableReinitialize
         onSubmit={handleSubmit}>
@@ -99,7 +101,8 @@ export default function MyPage() {
             </div>
           </div>
         )}
-      </Formik> */}
-    </div>
+      </Formik>
+      </div>
+    
   );
 }

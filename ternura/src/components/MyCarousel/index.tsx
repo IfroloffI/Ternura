@@ -4,7 +4,6 @@ import Image from 'next/image';
 import LeftSliderIcon from '../icons/LeftSliderIcon';
 import RightSliderIcon from '../icons/RightSliderIcon';
 
-
 const MyCarousel: FC<Props> = ({picturesSrc, className, ...props}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,16 +55,25 @@ const MyCarousel: FC<Props> = ({picturesSrc, className, ...props}) => {
 
       {/* Модальное окно */}
       {isModalOpen && (
-        <div
-          className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50'
-          onClick={closeModal}>
+        <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50'>
           <Image
             src={picturesSrc[currentIndex]}
             alt={'photo'}
+            onClick={closeModal}
             width={200}
             height={300}
-            className='object-cover !h-full !w-auto'
+            className='object-cover !h-full !w-auto rounded-xl'
           />
+          <div
+            className='w-fit h-fit absolute top-1/2 left-10 cursor-pointer'
+            onClick={handlePrev}>
+            <LeftSliderIcon />
+          </div>
+          <div
+            className='w-fit h-fit absolute top-1/2 right-10 cursor-pointer'
+            onClick={handleNext}>
+            <RightSliderIcon />
+          </div>
         </div>
       )}
     </div>
