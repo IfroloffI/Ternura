@@ -3,6 +3,8 @@ import localFont from 'next/font/local';
 import './globals.css';
 import ContentLayout from '@/layouts/ContentLayout';
 import {MainHeader} from '@/components/MainHeader';
+import {ChakraProvider} from '@chakra-ui/react';
+import {StrictMode} from 'react';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -29,8 +31,10 @@ export default function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-white text-gray w-full px-20 flex flex-col gap-8 antialiased`}>
-        <MainHeader />
-        {children}
+        <ChakraProvider>
+          <MainHeader />
+          {children}
+        </ChakraProvider>
       </body>
     </html>
   );
