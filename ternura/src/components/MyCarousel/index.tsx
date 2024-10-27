@@ -35,7 +35,7 @@ const MyCarousel: FC<Props> = ({picturesSrc, className, ...props}) => {
         alt={'photo'}
         width={270}
         height={200}
-        className={`mx-auto object-cover rounded-xl cursor-pointer`}
+        className={`mx-auto object-cover rounded-xl cursor-pointer shadow-shadow_3`}
         style={{
           maxWidth: '100%',
           height: '100%',
