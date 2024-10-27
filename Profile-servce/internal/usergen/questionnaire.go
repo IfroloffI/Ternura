@@ -1,7 +1,6 @@
-package questionnaireMass
+package usergen
 
 import (
-	"encoding/json"
 	"fmt"
 	"math/rand"
 	"time"
@@ -10,7 +9,7 @@ import (
 )
 
 type ProfileInfo struct {
-	ID          primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
+	ID          primitive.ObjectID `bson:"_id" json:"id"`
 	UserID      string             `bson:"userID" json:"userID"`
 	Nickname    string             `bson:"nickname" json:"nickname"`
 	Name        string             `bson:"name" json:"name"`
@@ -27,7 +26,7 @@ type ProfileInfo struct {
 	Interests   []string           `bson:"interests" json:"interests"`
 }
 
-func generateRandomProfiles(n int) []ProfileInfo {
+func GenerateRandomProfiles(n int) []ProfileInfo {
 	rand.Seed(time.Now().UnixNano())
 
 	names := []string{"Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Hannah", "Isaac", "Jack",
@@ -123,14 +122,14 @@ func generateRandomProfiles(n int) []ProfileInfo {
 	return profiles
 }
 
-func getJson() {
-	profiles := generateRandomProfiles(100)
-
-	profilesJSON, err := json.MarshalIndent(profiles, "", "  ")
-	if err != nil {
-		fmt.Println("Error generating JSON:", err)
-		return
-	}
-
-	fmt.Println(string(profilesJSON))
-}
+//func getJson() {
+//	profiles := generateRandomProfiles(100)
+//
+//	profilesJSON, err := json.MarshalIndent(profiles, "", "  ")
+//	if err != nil {
+//		fmt.Println("Error generating JSON:", err)
+//		return
+//	}
+//
+//	fmt.Println(string(profilesJSON))
+//}
