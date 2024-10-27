@@ -26,7 +26,7 @@ interface IInputField {
   helperText?: string | ReactElement;
   helperTextClassName?: string;
   errorClassName?: string;
-  fullWidth?: boolean;
+  fullwidth?: boolean;
   inlineField?: boolean;
   showErrorText?: boolean;
   hideErrors?: boolean;
@@ -42,7 +42,7 @@ function InputField({
   label,
   helperText,
   inlineField = false,
-  fullWidth = false,
+  fullwidth = false,
   hideErrors = false,
   showErrorText = true,
   helperTextClassName,
@@ -105,7 +105,7 @@ function InputField({
         flexDir="row-reverse"
         justifyContent="flex-end"
         // className="!gap-3-x md:!gap-x-4 md:!gap-y-0 !gap-y-3"
-        w={!fullWidth ? 'max-content' : '100%'}
+        w={!fullwidth ? 'max-content' : '100%'}
       >
         {input}
         {label && (
@@ -126,12 +126,12 @@ function InputField({
         )}
       </Stack>
     );
-  }, [inlineField, fullWidth, input, label, tooltip, direction, labelSize]);
+  }, [inlineField, fullwidth, input, label, tooltip, direction, labelSize]);
 
   return (
     <FormControl
       isInvalid={showError && !hideErrors}
-      maxW={!fullWidth ? 'max-content' : '100%'}
+      maxW={!fullwidth ? 'max-content' : '100%'}
       {...restProps}
     >
       {labelWithInput}

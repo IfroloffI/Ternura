@@ -18,7 +18,7 @@ const getTabTileClassNames = ({isActive}: {isActive: boolean}): string => {
         align-baseline
         py-2
         !text-black
-        underline-offset-8 transition-all duration-200 decoration-purpleMain decoration-2
+        underline-offset-[6.5px] transition-all duration-200 decoration-purpleMain decoration-2
         text-nowrap
         ${isActive ? 'underline' : '!text-gray-500'} 
     `;
@@ -65,7 +65,52 @@ const MainHeader: FC<Props> = ({activePath}) => {
           ))}
         </ul>
       }
-      trailing={<AvatarEmptyIcon width={32} height={32} />}
+      trailing={
+        <MenuPopup
+          ref={ref}
+          isOpen={isOpen}
+          onOpen={onOpen}
+          onClose={onClose}
+          navBar={
+            <>
+              <MenuTile onClick={onClose} icon={<NavIcon variant='settings' />}>
+                Настройки
+              </MenuTile>
+              <MenuTile
+                onClick={() => {}}
+                icon={
+                  <NavIcon
+                    style={{marginLeft: '1px', marginRight: '-1px'}}
+                    variant='exit'
+                  />
+                }>
+                Выйти
+              </MenuTile>
+            </>
+          }
+          actions={
+            <>
+              {/* <p>
+                  Ваш эксперт HomeAuction:
+                  <span className="font-semibold"> Михаил У.</span>
+                </p>
+                <Button
+                  icon={<HomeIcon />}
+                  className={`
+                        rounded-md
+                        text-xs font-semibold leading-3
+                        bg-yellow-300 hover:bg-yellow
+                        `}
+                >
+                  Связаться
+                </Button> */}
+            </>
+          }>
+          <div>
+            <AvatarEmptyIcon width={32} height={32} />
+          </div>
+        </MenuPopup>
+      }
     />
   );
 };
