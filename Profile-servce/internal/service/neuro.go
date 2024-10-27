@@ -56,6 +56,7 @@ func min(a, b int) int {
 
 func CalculateSimilarity(userA, userB domain.UserProfile) float64 {
 	var score float64
+	const likeWeight = 0.5
 	const ageWeight = 0.3
 	const genderWeight = 0.2
 	const interestWeight = 0.3
@@ -69,14 +70,14 @@ func CalculateSimilarity(userA, userB domain.UserProfile) float64 {
 		score += ageWeight
 	}
 
-	if userA.Gender != userB.Gender {
-		score += genderWeight
-	}
+	//if userA.Gender != userB.Gender {
+	//	score += genderWeight
+	//}
 
 	common := 0
 	for _, interestA := range userA.Interests {
 		for _, interestB := range userB.Interests {
-			if levenshteinDistance(interestA, interestB) <= 2 { // Порог близости (2 символа)
+			if levenshteinDistance(interestA, interestB) <= 4 { // Порог близости (4 символа)
 				common++
 			}
 		}

@@ -14,6 +14,7 @@ type ProfileApi interface {
 	GetSuitableProfiles(ctx context.Context, profileID string) ([]*domain.UserProfile, error)
 	GetProfilesByGender(ctx context.Context, gender string) ([]*domain.UserProfile, error)
 	GetProfileByID(ctx context.Context, uuid string) (*domain.UserProfile, error)
+	Like(ctx context.Context, userID, likeID string)
 }
 
 type ProfileHandler struct {
@@ -111,3 +112,14 @@ func (p *ProfileHandler) GetProfilesByGender(w http.ResponseWriter, r *http.Requ
 		return
 	}
 }
+
+//
+//func (p *ProfileHandler) Like(w http.ResponseWriter, r *http.Request) {
+//	w.Header().Set("Access-Control-Allow-Origin", "*")
+//	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+//	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+//	userID := mux.Vars(r)["USER_ID"]
+//	likeId := mux.Vars(r)["LIKE_ID"]
+//	p.service.
+//
+//}

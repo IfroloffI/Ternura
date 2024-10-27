@@ -66,3 +66,7 @@ func (p *ProfileHandler) GetProfilesByGender(ctx context.Context, gender string)
 	}
 	return profileList, nil
 }
+
+func (p *ProfileHandler) Like(ctx context.Context, userID, likeID string) {
+	UsersLikes.AddLike(userID, likeID)
+}
