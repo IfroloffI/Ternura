@@ -30,7 +30,9 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body
+
         className={`${geistSans.variable} ${geistMono.variable} bg-white-abs text-gray w-full px-20 flex flex-col gap-8 antialiased`}>
+
         <ChakraProvider>
           <MainHeader />
           {children}

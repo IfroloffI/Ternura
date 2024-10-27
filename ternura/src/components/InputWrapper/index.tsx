@@ -1,4 +1,4 @@
-import { cloneElement, memo, ReactElement, ReactNode, useMemo } from 'react';
+import {cloneElement, memo, ReactElement, ReactNode, useMemo} from 'react';
 import {
   FormControl,
   FormErrorMessage,
@@ -6,8 +6,8 @@ import {
   FormLabel,
   Stack,
 } from '@chakra-ui/react';
-import { useFormikContext } from 'formik';
-import { InfoIconCustom } from '../icons/InfoIconCustom';
+import {useFormikContext} from 'formik';
+import {InfoIconCustom} from '../icons/InfoIconCustom';
 
 export enum InputWrapperLabelSize {
   MEDIUM = 'md',
@@ -53,7 +53,7 @@ function InputField({
   fieldSize = InputWrapperFieldSize.MEDIUM,
   ...restProps
 }: IInputField) {
-  const { getFieldProps, errors, touched: toucheds } = useFormikContext();
+  const {getFieldProps, errors, touched: toucheds} = useFormikContext();
 
   const formikProps = getFieldProps(name);
 
@@ -75,21 +75,19 @@ function InputField({
         <Stack
           direction={direction}
           alignItems={direction === 'row' ? 'center' : 'flex-start'}
-          spacing={2}
-        >
+          spacing={2}>
           {label && (
             <FormLabel
               size={labelSize}
               minW={direction === 'row' && '150px'}
               marginBottom={0}
-              display="flex"
+              display='flex'
               marginEnd={0}
               fontWeight={600}
               width={direction === 'row' && '150px'}
               gap={2}
-              alignContent="center"
-              alignItems="center"
-            >
+              alignContent='center'
+              alignItems='center'>
               {label} {tooltip && <InfoIconCustom label={tooltip} />}
             </FormLabel>
           )}
@@ -100,13 +98,12 @@ function InputField({
 
     return (
       <Stack
-        alignItems="center"
-        direction="row"
-        flexDir="row-reverse"
-        justifyContent="flex-end"
+        alignItems='center'
+        direction='row'
+        flexDir='row-reverse'
+        justifyContent='flex-end'
         // className="!gap-3-x md:!gap-x-4 md:!gap-y-0 !gap-y-3"
-        w={!fullwidth ? 'max-content' : '100%'}
-      >
+        w={!fullwidth ? 'max-content' : '100%'}>
         {input}
         {label && (
           <FormLabel
@@ -114,13 +111,12 @@ function InputField({
             fontWeight={600}
             width={direction === 'row' && '150px'}
             marginBottom={0}
-            maxW="213px"
-            display="flex"
+            maxW='213px'
+            display='flex'
             marginEnd={0}
             gap={2}
-            alignContent="center"
-            alignItems="center"
-          >
+            alignContent='center'
+            alignItems='center'>
             {label} {tooltip && <InfoIconCustom label={tooltip} />}
           </FormLabel>
         )}
@@ -132,8 +128,7 @@ function InputField({
     <FormControl
       isInvalid={showError && !hideErrors}
       maxW={!fullwidth ? 'max-content' : '100%'}
-      {...restProps}
-    >
+      {...restProps}>
       {labelWithInput}
       {showError && !hideErrors && showErrorText && (
         <FormErrorMessage className={errorClassName}>{error}</FormErrorMessage>
