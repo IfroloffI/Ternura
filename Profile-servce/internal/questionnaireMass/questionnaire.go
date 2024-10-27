@@ -17,7 +17,7 @@ type ProfileInfo struct {
 	Surname     string             `bson:"surname" json:"surname"`
 	Phone       string             `bson:"phone" json:"phone"`
 	Email       string             `bson:"email" json:"email"`
-	Birth       string             `bson:"birth" json:"birth"`
+	Birth       int                `bson:"birth" json:"birth"`
 	Gender      string             `bson:"gender" json:"gender"`
 	Height      float64            `bson:"height" json:"height"`
 	Weight      float64            `bson:"weight" json:"weight"`
@@ -101,16 +101,16 @@ func generateRandomProfiles(n int) []ProfileInfo {
 			Surname:  surnames[rand.Intn(len(surnames))],
 			Phone:    fmt.Sprintf("+%d%08d", rand.Intn(1000), rand.Intn(10000000)),
 			Email:    fmt.Sprintf("user%d@example.com", i),
-			Birth: func() string {
-				currentYear := 2024
+			Birth: func() int {
 				age := rand.Intn(23) + 18
-				birthYear := currentYear - age
 				month := rand.Intn(12) + 1
 				day := rand.Intn(28) + 1
+
 				if month > int(time.Now().Month()) || (month == int(time.Now().Month()) && day > time.Now().Day()) {
-					birthYear--
+					age++
 				}
-				return fmt.Sprintf("%d-%02d-%02d", birthYear, month, day)
+
+				return age
 			}(),
 			Gender:      gender,
 			Height:      rand.Float64()*50 + 150,
