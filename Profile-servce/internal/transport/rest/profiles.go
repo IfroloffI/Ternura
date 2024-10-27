@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/Benzogang-Tape/Ternura/Profile-servce/internal/domain"
+	"github.com/gorilla/mux"
 	"go.uber.org/zap"
 	"net/http"
 )
@@ -39,18 +40,48 @@ func (p *ProfileHandler) GetAllProfiles(w http.ResponseWriter, r *http.Request) 
 	}
 
 	resp, err := json.Marshal(profiles)
-	if _, err = w.Write(resp); err != nil {
+	if err != nil {
 		jsonSimpleErr(w, http.StatusInternalServerError, domain.NewSimpleErr(domain.ErrResponseError.Error()))
+		return
 	}
 	if _, err = w.Write(resp); err != nil {
 		jsonSimpleErr(w, http.StatusInternalServerError, domain.NewSimpleErr(domain.ErrResponseError.Error()))
+		return
 	}
 }
 
 func (p *ProfileHandler) GetProfileByID(w http.ResponseWriter, r *http.Request) {
+	profile, err := p.service.GetProfileByID(r.Context(), mux.Vars(r)["USER_ID"])
+	if err != nil {
+		jsonSimpleErr(w, http.StatusBadRequest, domain.NewSimpleErr(domain.ErrBadRequest.Error()))
+		return
+	}
 
+	resp, err := json.Marshal(profile)
+	if err != nil {
+		jsonSimpleErr(w, http.StatusInternalServerError, domain.NewSimpleErr(domain.ErrResponseError.Error()))
+		return
+	}
+	if _, err = w.Write(resp); err != nil {
+		jsonSimpleErr(w, http.StatusInternalServerError, domain.NewSimpleErr(domain.ErrResponseError.Error()))
+		return
+	}
 }
 
 func (p *ProfileHandler) GetProfilesByGender(w http.ResponseWriter, r *http.Request) {
+	profiles, err := p.service.GetProfilesByGender(r.Context(), mux.Vars(r)["GENDER"])
+	if err != nil {
+		jsonSimpleErr(w, http.StatusBadRequest, domain.NewSimpleErr(domain.ErrBadRequest.Error()))
+		return
+	}
 
+	resp, err := json.Marshal(profiles)
+	if err != nil {
+		jsonSimpleErr(w, http.StatusInternalServerError, domain.NewSimpleErr(domain.ErrResponseError.Error()))
+		return
+	}
+	if _, err = w.Write(resp); err != nil {
+		jsonSimpleErr(w, http.StatusInternalServerError, domain.NewSimpleErr(domain.ErrResponseError.Error()))
+		return
+	}
 }

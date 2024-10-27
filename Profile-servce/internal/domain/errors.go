@@ -11,6 +11,7 @@ var (
 	ErrUnknownError        = errors.New("unknown error")
 	ErrResponseError       = errors.New("response generation error")
 	ErrConfigParsingFailed = errors.New("config parsing failed")
+	ErrBadRequest          = errors.New("bad request")
 )
 
 func NewSimpleErr(message interface{}) SimpleErr {

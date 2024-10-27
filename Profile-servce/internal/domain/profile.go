@@ -15,7 +15,8 @@ type UserProfile struct {
 	Height      float64            `json:"height" bson:"height"`
 	Weight      float64            `json:"weight" bson:"weight"`
 	StepsAmount uint64             `json:"stepsAmount" bson:"stepsAmount"`
-	PhotoURLs   []string           `json:"photoURLs" bson:"photoURLs"`
-	Qualities   []string           `json:"qualities" bson:"qualities"`
-	Interests   []string           `json:"interests" bson:"interests"`
+	//Likes       []string           `json:"likes" bson:"likes"`
+	PhotoURLs []string `json:"photoURLs" bson:"photoURLs"`
+	Qualities []string `json:"qualities" bson:"qualities"`
+	Interests []string `json:"interests" bson:"interests"`
 }

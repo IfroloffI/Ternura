@@ -39,9 +39,17 @@ func (p *ProfileHandler) GetSuitableProfiles(ctx context.Context, profile domain
 }
 
 func (p *ProfileHandler) GetProfileByID(ctx context.Context, id string) (*domain.UserProfile, error) {
-	return nil, nil
+	profile, err := p.repo.GetProfileByID(ctx, id)
+	if err != nil {
+		return nil, errors.Wrap(err, "GetProfileByID: ")
+	}
+	return profile, nil
 }
 
 func (p *ProfileHandler) GetProfilesByGender(ctx context.Context, gender string) ([]*domain.UserProfile, error) {
-	return nil, nil
+	profileList, err := p.repo.GetProfilesByGender(ctx, gender)
+	if err != nil {
+		return nil, errors.Wrap(err, "GetProfilesByGender: ")
+	}
+	return profileList, nil
 }
