@@ -13,15 +13,6 @@ const getIconfromVariant = (variant: string) => {
   }
 };
 
-const getIconfromVariant = (variant: string) => {
-  switch (variant) {
-    case 'filled':
-      return iconEmpty;
-    default:
-      return iconOutlined;
-  }
-};
-
 
 const AvatarEmptyIcon: FC<Props> = ({
   width,
