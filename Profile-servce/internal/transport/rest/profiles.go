@@ -29,7 +29,24 @@ func NewProfileAPI(profileAPi ProfileApi, logger *zap.SugaredLogger) *ProfileHan
 }
 
 func (p *ProfileHandler) GetSuggestedProfiles(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	profiles, err := p.service.GetSuitableProfiles(r.Context(), mux.Vars(r)["USER_ID"])
+	if err != nil {
+		jsonSimpleErr(w, http.StatusBadRequest, domain.NewSimpleErr(domain.ErrBadRequest.Error()))
+		return
+	}
 
+	resp, err := json.Marshal(profiles)
+	if err != nil {
+		jsonSimpleErr(w, http.StatusInternalServerError, domain.NewSimpleErr(domain.ErrResponseError.Error()))
+		return
+	}
+	if _, err = w.Write(resp); err != nil {
+		jsonSimpleErr(w, http.StatusInternalServerError, domain.NewSimpleErr(domain.ErrResponseError.Error()))
+		return
+	}
 }
 
 func (p *ProfileHandler) GetAllProfiles(w http.ResponseWriter, r *http.Request) {

@@ -24,6 +24,7 @@ func (rtr *AppRouter) InitRouter(logger *zap.SugaredLogger) http.Handler {
 	r.HandleFunc("/getProfiles", rtr.profileHandler.GetAllProfiles).Methods(http.MethodGet)
 	r.HandleFunc("/getProfileByID/{USER_ID}", rtr.profileHandler.GetProfileByID).Methods(http.MethodGet)
 	r.HandleFunc("/getProfilesByGender/{GENDER}", rtr.profileHandler.GetProfilesByGender).Methods(http.MethodGet)
+	r.HandleFunc("/getSuitableProfiles/{USER_ID}", rtr.profileHandler.GetSuggestedProfiles).Methods(http.MethodGet)
 
 	router := mdwr.AccessLog(logger, r)
 	router = middleware.Panic(router, logger)

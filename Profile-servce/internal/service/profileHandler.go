@@ -36,7 +36,8 @@ func (p *ProfileHandler) GetSuitableProfiles(ctx context.Context, profileID stri
 	if err != nil {
 		return nil, errors.Wrap(err, "GetProfileByID: ")
 	}
-	suitableProfiles, err := p.GetAllProfiles(ctx)
+	userGender := userProfile.Gender
+	suitableProfiles, err := p.GetProfilesByGender(ctx, userGender)
 	if err != nil {
 		return nil, errors.Wrap(err, "GetSuitableProfiles: ")
 	}
