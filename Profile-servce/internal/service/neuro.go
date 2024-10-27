@@ -1,4 +1,4 @@
-package profileAnalysis
+package service
 
 import (
 	"math"
