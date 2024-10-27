@@ -18,7 +18,9 @@ const ProfilesList = () => {
   const {data, isLoading, error} = useQuery<Props[]>({
     queryKey: ['profiles'],
     queryFn: async () => {
-      const response = await fetch(`http://localhost:8080/getSuitablePropfiles/user019`);
+      const response = await fetch(
+        `http://localhost:8080/getSuitablePropfiles/user019`,
+      );
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
