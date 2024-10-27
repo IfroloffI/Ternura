@@ -1,12 +1,15 @@
+'use client';
 import {FC, useState} from 'react';
 import Props from './MyCarousel.props';
 import Image from 'next/image';
 import LeftSliderIcon from '../icons/LeftSliderIcon';
 import RightSliderIcon from '../icons/RightSliderIcon';
+import { picturesSrc as pics } from './MyCarousel.usecase';
 
 const MyCarousel: FC<Props> = ({picturesSrc, className, ...props}) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // picturesSrc = pics;
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleNext = () => {
     setCurrentIndex(prevIndex => (prevIndex + 1) % picturesSrc.length);
@@ -31,7 +34,7 @@ const MyCarousel: FC<Props> = ({picturesSrc, className, ...props}) => {
       className={`relative h-full w-full max-w-[100vw] rounded-xl aspect-[9/5] ${className}`}
       {...props}>
       <Image
-        src={picturesSrc[currentIndex]}
+        src={picturesSrc[currentIndex] || ''}
         alt={'photo'}
         width={270}
         height={200}
@@ -57,7 +60,7 @@ const MyCarousel: FC<Props> = ({picturesSrc, className, ...props}) => {
       {isModalOpen && (
         <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50'>
           <Image
-            src={picturesSrc[currentIndex]}
+            src={picturesSrc[currentIndex] || ''}
             alt={'photo'}
             onClick={closeModal}
             width={200}

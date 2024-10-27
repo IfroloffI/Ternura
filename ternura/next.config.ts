@@ -1,8 +1,12 @@
-import type { NextConfig } from "next";
+import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['i.pinimg.com'],
+    domains: [
+      'i.pinimg.com',
+      'yandex-images.clstorage.net',
+      'avatars.mds.yandex.net',
+    ],
   },
 };
 

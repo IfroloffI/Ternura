@@ -33,21 +33,34 @@ func (p *ProfileHandler) GetSuggestedProfiles(w http.ResponseWriter, r *http.Req
 }
 
 func (p *ProfileHandler) GetAllProfiles(w http.ResponseWriter, r *http.Request) {
-	profiles, err := p.service.GetAllProfiles(r.Context())
-	if err != nil {
-		jsonSimpleErr(w, http.StatusInternalServerError, domain.NewSimpleErr(domain.ErrUnknownError.Error()))
-		return
-	}
+    // Устанавливаем заголовки для разрешения CORS
+    w.Header().Set("Access-Control-Allow-Origin", "*")
+    w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+    w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
-	resp, err := json.Marshal(profiles)
-	if err != nil {
-		jsonSimpleErr(w, http.StatusInternalServerError, domain.NewSimpleErr(domain.ErrResponseError.Error()))
-		return
-	}
-	if _, err = w.Write(resp); err != nil {
-		jsonSimpleErr(w, http.StatusInternalServerError, domain.NewSimpleErr(domain.ErrResponseError.Error()))
-		return
-	}
+    // Если это preflight запрос (OPTIONS), просто возвращаем 200 OK
+    if r.Method == http.MethodOptions {
+        w.WriteHeader(http.StatusOK)
+        return
+    }
+
+    profiles, err := p.service.GetAllProfiles(r.Context())
+    if err != nil {
+        jsonSimpleErr(w, http.StatusInternalServerError, domain.NewSimpleErr(domain.ErrUnknownError.Error()))
+        return
+    }
+
+    resp, err := json.Marshal(profiles)
+    if err != nil {
+        jsonSimpleErr(w, http.StatusInternalServerError, domain.NewSimpleErr(domain.ErrResponseError.Error()))
+        return
+    }
+
+    w.Header().Set("Content-Type", "application/json")
+    if _, err = w.Write(resp); err != nil {
+        jsonSimpleErr(w, http.StatusInternalServerError, domain.NewSimpleErr(domain.ErrResponseError.Error()))
+        return
+    }
 }
 
 func (p *ProfileHandler) GetProfileByID(w http.ResponseWriter, r *http.Request) {
