@@ -102,11 +102,14 @@ func generateRandomProfiles(n int) []ProfileInfo {
 			Phone:    fmt.Sprintf("+%d%08d", rand.Intn(1000), rand.Intn(10000000)),
 			Email:    fmt.Sprintf("user%d@example.com", i),
 			Birth: func() string {
-				currentYear := time.Now().Year()
+				currentYear := 2024
 				age := rand.Intn(23) + 18
 				birthYear := currentYear - age
 				month := rand.Intn(12) + 1
 				day := rand.Intn(28) + 1
+				if month > int(time.Now().Month()) || (month == int(time.Now().Month()) && day > time.Now().Day()) {
+					birthYear--
+				}
 				return fmt.Sprintf("%d-%02d-%02d", birthYear, month, day)
 			}(),
 			Gender:      gender,
