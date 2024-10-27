@@ -1,13 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const db_Profiles = require("../models");
+const { connectDB } = require("../models");
 
 router.post("/", async (req, res) => {
-    const to_update_profile = req.body;
+    const { UserID, ...to_update_profile } = req.body; // Извлечение UserID из тела запроса
     try {
-        const profile = new db_Profiles(to_update_profile);
-        await profile.replaceOne({"user_id": to_update_profile.user_id});
-        res.json(profile);
+        const db = await connectDB();
+        const result = await db.collection('profiles').updateOne(
+            { UserID }, // Условие обновления по UserID
+            { $set: to_update_profile } // Обновление данных
+        );
+        if (result.modifiedCount === 0) {
+            return res.status(404).json({ message: "Profile not found" });
+        }
+        res.status(200).json({ message: "Profile updated successfully" });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
