@@ -28,13 +28,12 @@ import (
 // Новая
 func RecommendProfiles(user domain.UserProfile, dataset []*domain.UserProfile) []SimilarityScore {
 	var similarityScores []SimilarityScore
-	//var dataset // TODO передать dataset
 	for _, otherUser := range dataset {
 		if otherUser.UserID == user.UserID {
 			continue // Пропускаем самого себя
 		}
 		similarity := CalculateSimilarity(user, *otherUser)
-		if similarity > 0.0 { // Мы можем включить профили с любым рейтинговым значением
+		if similarity > 20.0 {
 			similarityScores = append(similarityScores, SimilarityScore{Profile: *otherUser, Score: similarity})
 		}
 	}
