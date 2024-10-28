@@ -58,6 +58,14 @@ func GenerateRandomProfiles(n int) []ProfileInfo {
 		"https://i.pinimg.com/564x/59/59/52/5959526847cf6be79778c37505604411.jpg",
 		"https://i.pinimg.com/564x/42/e1/f9/42e1f9b50d2cb9e3d040300b6307f1fc.jpg",
 		"https://i.pinimg.com/564x/c0/e5/e6/c0e5e65749ab434074c183193fd686ba.jpg",
+		"https://i.pinimg.com/736x/7c/c9/05/7cc9053503d43305a83856645027055e.jpg",
+		"https://i.pinimg.com/564x/a9/16/bc/a916bc88f8ba7885f9e4acadf8bad656.jpg",
+		"https://i.pinimg.com/564x/4d/2f/38/4d2f38e65f6846a6fb4825abd932f73a.jpg",
+		"https://i.pinimg.com/564x/ae/08/a6/ae08a667cf29c634b38b7d2d6c3d3e37.jpg",
+		"https://i.pinimg.com/564x/b0/bb/1b/b0bb1b620c7d10d6326308d89f79247d.jpg",
+		"https://i.pinimg.com/564x/59/59/52/5959526847cf6be79778c37505604411.jpg",
+		"https://i.pinimg.com/564x/42/e1/f9/42e1f9b50d2cb9e3d040300b6307f1fc.jpg",
+		"https://i.pinimg.com/564x/c0/e5/e6/c0e5e65749ab434074c183193fd686ba.jpg",
 	}
 
 	femalePhoto := []string{
