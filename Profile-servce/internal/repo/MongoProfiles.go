@@ -44,7 +44,7 @@ func (p *ProfileRepoMongoDB) GetProfileByID(ctx context.Context, id string) (*do
 }
 
 func (p *ProfileRepoMongoDB) GetProfilesByGender(ctx context.Context, gender string) ([]*domain.UserProfile, error) {
-	profiles := make([]*domain.UserProfile, 12)
+	profiles := make([]*domain.UserProfile, 0)
 	filter := bson.M{"gender": gender}
 	cursor, err := p.collection.Find(ctx, filter)
 	if err != nil {
