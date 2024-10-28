@@ -85,17 +85,17 @@ func CalculateSimilarity(userA, userB domain.UserProfile) float64 {
 	score += (float64(common) / float64(len(userA.Interests)+len(userB.Interests)-common)) * interestWeight
 
 	heightDiff := math.Abs(userA.Height - userB.Height)
-	if heightDiff <= 10 { // Порог схожести по росту (10 см)
+	if heightDiff <= 10 {
 		score += heightWeight
 	}
 
 	weightDiff := math.Abs(userA.Weight - userB.Weight)
-	if weightDiff <= 10 { // Порог схожести по весу (10 кг)
+	if weightDiff <= 10 {}
 		score += weightWeight
 	}
 
 	stepsDiff := math.Abs(float64(userA.StepsAmount) - float64(userB.StepsAmount))
-	if stepsDiff <= 2000 { // Порог схожести по количеству шагов (2000 шагов)
+	if stepsDiff <= 2000 {
 		score += stepsWeight
 	}
 

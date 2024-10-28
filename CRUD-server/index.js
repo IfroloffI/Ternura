@@ -17,4 +17,4 @@ app.use("/updateProfile", updateRouter);
 
 app.listen(port, () => {
   console.log("Server is running on port " + port);
-});
+}); 
