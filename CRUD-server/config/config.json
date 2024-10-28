@@ -1,1 +1,4 @@
-{}
+{
+    "MongoDB_href": "mongodb+srv://DetDOM:DetDOM_BMSTU_1899@ternura.wlbw2.mongodb.net/?retryWrites=true&w=majority&appName=Ternura",
+    "MongoDB_local": "mongodb://localhost:27017/myapp"
+}

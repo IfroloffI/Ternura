@@ -1,10 +1,18 @@
 "use strict";
 
-const Profiles = require(".");
+const { MongoClient } = require('mongodb');
 
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/myapp',);
+const uri = 'mongodb+srv://@/ternura?retryWrites=true&w=majority&appName=';
+const client = new MongoClient(uri);
 
-const Profile = mongoose.model('Profiles', Profiles);
+let db;
 
-module.exports = Profile;
+const connectDB = async () => {
+    if (!db) {
+        await client.connect();
+        db = client.db('ternura'); // Название базы данных
+    }
+    return db;
+};
+
+module.exports = { connectDB, client };
