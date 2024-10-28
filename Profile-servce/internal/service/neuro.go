@@ -90,7 +90,7 @@ func CalculateSimilarity(userA, userB domain.UserProfile) float64 {
 	}
 
 	weightDiff := math.Abs(userA.Weight - userB.Weight)
-	if weightDiff <= 10 {}
+	if weightDiff <= 10 {
 		score += weightWeight
 	}
 
