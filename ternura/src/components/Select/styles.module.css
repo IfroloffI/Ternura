@@ -1,0 +1,12 @@
+.icon-container {
+  width: 15px;
+  height: 15px;
+  margin-left: 15px;
+  margin-right: -15px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

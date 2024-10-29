@@ -37,7 +37,13 @@ func (p *ProfileHandler) GetSuitableProfiles(ctx context.Context, profileID stri
 		return nil, errors.Wrap(err, "GetProfileByID: ")
 	}
 	userGender := userProfile.Gender
-	suitableProfiles, err := p.GetProfilesByGender(ctx, userGender)
+	var needGender string
+	if userGender == "male" {
+		needGender = "female"
+	} else {
+		needGender = "male"
+	}
+	suitableProfiles, err := p.GetProfilesByGender(ctx, needGender)
 	if err != nil {
 		return nil, errors.Wrap(err, "GetSuitableProfiles: ")
 	}
@@ -47,7 +53,6 @@ func (p *ProfileHandler) GetSuitableProfiles(ctx context.Context, profileID stri
 	for _, item := range recs {
 		sortedProfiles = append(sortedProfiles, &item.Profile)
 	}
-
 	return sortedProfiles, nil
 }
 
@@ -65,4 +70,8 @@ func (p *ProfileHandler) GetProfilesByGender(ctx context.Context, gender string)
 		return nil, errors.Wrap(err, "GetProfilesByGender: ")
 	}
 	return profileList, nil
+}
+
+func (p *ProfileHandler) Like(ctx context.Context, userID, likeID string) {
+	UsersLikes.AddLike(userID, likeID)
 }
